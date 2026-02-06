@@ -1,27 +1,67 @@
-# Compiled Object files
+# =========================
+# Build & Compilation
+# =========================
+
+# Object files
 *.o
 *.obj
 
-# Compiled Executable
+# Executables (Linux / Windows)
+*.out
 *.exe
+*.app
+
+# Project executables (custom names)
 converter
 unit-converter
+UnitConverter
 
-# Build directories
+# =========================
+# CMake
+# =========================
+
 build/
+build-*/
 cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# =========================
+# Binary output directories
+# =========================
+
 bin/
 obj/
 
-# IDE files
+# =========================
+# IDE / Editor
+# =========================
+
 .vscode/
 .idea/
 *.swp
 *.swo
+*.tmp
 
-# OS files
+# =========================
+# OS / System
+# =========================
+
 .DS_Store
 Thumbs.db
 
-# CSV output (hasil konversi)
+# =========================
+# Program Output / Data
+# =========================
+
 *_converted.csv
+*.log
+
+# =========================
+# WSL / Linux
+# =========================
+
+*.core
