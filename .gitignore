@@ -1,0 +1,27 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Compiled Executable
+*.exe
+converter
+unit-converter
+
+# Build directories
+build/
+cmake-build-*/
+bin/
+obj/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# CSV output (hasil konversi)
+*_converted.csv
