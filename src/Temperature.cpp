@@ -1,44 +1,40 @@
 #include "Temperature.h"
+#include <stdexcept>
 
-Temperature::Temperature(double value, Unit from) 
-    : value(value), currentUnit(from) {}
+double Temperature::toBase(double value, std::string unit) {
+    // Convert to Celsius (base)
+    if (unit == "C" || unit == "celsius") {
+        return value;
+    } 
+    else if (unit == "F" || unit == "fahrenheit") {
+        return (value - 32) * 5.0 / 9.0;
+    } 
+    else if (unit == "K" || unit == "kelvin") {
+        return value - 273.15;
+    } 
+    else if (unit == "Re" || unit == "reamur") {
+        return value * 5.0 / 4.0;
+    } 
+    else {
+        throw std::invalid_argument("Invalid temperature unit: " + unit);
+    }
+}
 
-double Temperature::convertTo(Unit to) {
-    if (currentUnit == to) return value;
-    
-    // Convert to Celsius first (base unit)
-    double celsius = toCelsius(value, currentUnit);
-    
+double Temperature::fromBase(double baseValue, std::string unit) {
     // Convert from Celsius to target
-    return fromCelsius(celsius, to);
-}
-
-double Temperature::toCelsius(double val, Unit from) {
-    switch(from) {
-        case CELSIUS: return val;
-        case FAHRENHEIT: return (val - 32) * 5.0/9.0;
-        case KELVIN: return val - 273.15;
-        case REAMUR: return val * 5.0/4.0;
-        default: return val;
-    }
-}
-
-double Temperature::fromCelsius(double celsius, Unit to) {
-    switch(to) {
-        case CELSIUS: return celsius;
-        case FAHRENHEIT: return (celsius * 9.0/5.0) + 32;
-        case KELVIN: return celsius + 273.15;
-        case REAMUR: return celsius * 4.0/5.0;
-        default: return celsius;
-    }
-}
-
-std::string Temperature::getUnitString(Unit unit) {
-    switch(unit) {
-        case CELSIUS: return "°C";
-        case FAHRENHEIT: return "°F";
-        case KELVIN: return "K";
-        case REAMUR: return "°Ré";
-        default: return "";
+    if (unit == "C" || unit == "celsius") {
+        return baseValue;
+    } 
+    else if (unit == "F" || unit == "fahrenheit") {
+        return (baseValue * 9.0 / 5.0) + 32;
+    } 
+    else if (unit == "K" || unit == "kelvin") {
+        return baseValue + 273.15;
+    } 
+    else if (unit == "Re" || unit == "reamur") {
+        return baseValue * 4.0 / 5.0;
+    } 
+    else {
+        throw std::invalid_argument("Invalid temperature unit: " + unit);
     }
 }
